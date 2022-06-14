@@ -1,0 +1,76 @@
+.label-calendar * {
+    box-sizing: border-box;
+}
+
+.labeled-calendar {
+    font-family: '';
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border: 3px solid black;
+    width : 600px;
+    max-height: 700px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.labeled-calendar > .container {
+    flex: 1;
+    display: flex;
+}
+  
+.weekday-bar {
+    height: 30px;
+    flex-grow: 0;   
+    display: flex;
+    padding-left: 90px;
+    padding-right: 10px;
+    gap: 10px;
+    justify-content: stretch;
+    background-color: rgba(131, 142, 158, 0.85);
+    align-items: center;
+}
+
+.weekday-bar > div {
+    flex: 1;
+    text-align: center;
+}
+
+.time-bar {
+    width: 60px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    background-color: rgb(216, 223, 234);
+}
+
+.calendar {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    flex: 1;
+}
+
+.day {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 6px;
+}
+
+.block {
+    background-color: rgb(190, 209, 232);
+    flex: 1 1 20px;
+    transition: all .12s ease;
+}
+
+.hovering {
+    transform: scale(1.05);
+    background-color: rgba(131, 142, 158, 0.85);
+}
+
+.selecting {
+    background-color: hsl(223, 23%, 48%);
+}
