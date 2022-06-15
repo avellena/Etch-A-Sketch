@@ -5,17 +5,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cover Match</title>
     <script src="./calendar.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calendar.css">
+    <link rel="stylesheet" href="page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1f59ed3742.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="labeled-calendar">
-        <div class="weekday-bar"></div>
-        <div class="container">
-            <div class="time-bar"></div>
-            <div class="container calendar"></div>
+    <div class="title">COVER MATCH</div>
+
+    <div class="header">
+        <div class="container1">
+            <button class="request">Need Cover</button>
+            <button class="reset">
+                <i class="fa-solid fa-rotate-right fa-lg"></i>
+            </button>
+        </div>
+        <div class="container2">
+            <button class="offer">Offer Cover</button>
+            <button class="reset">
+                <i class="fa-solid fa-rotate-right fa-lg"></i>
+            </button>
+        </div>
+        <div class="empty">
+            Select the slots you need cover for.
+        </div>
+        <div class="container3">
+            <button class="request">Submit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="labeled-calendar">
+            <div class="weekday-bar"></div>
+            <div class="container">
+                <div class="time-bar"></div>
+                <div class="container calendar"></div>
+            </div>
+        </div>
+        <div class="selection-message">
+            <div class="request-message"></div>
+            <div class="offer-message"></div>
         </div>
     </div>
 </body>

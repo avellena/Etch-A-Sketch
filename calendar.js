@@ -1,9 +1,34 @@
 const calendar = document.querySelector(".calendar");
-const weekdays = ['mon', 'tue', 'wed', 'thur', 'fri'];
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri'];
 const timeBar = document.querySelector(".time-bar");
 const weekdayBar = document.querySelector(".weekday-bar");
-let mouseDown = 0;
+const resetRequest = document.querySelector(".container1 > .reset");
+const resetOffer = document.querySelector(".container2 > .reset");
+const requestButton = document.querySelector(".request");
+const offerButton = document.querySelector(".offer");
+const coverTypeMsg = document.querySelector(".empty")
+let requestCover = true;
 
+function toggelTypeMsg() {
+    if (requestCover) {
+        coverTypeMsg.textContent = "Select the slots you need cover for."
+    } else {
+        coverTypeMsg.textContent = "Select the slots you can cover."
+    }
+}
+
+requestButton.addEventListener("click", () => {
+    requestCover = true;
+    toggelTypeMsg();
+    console.log(coverTypeMsg.textContent)
+})
+
+offerButton.addEventListener("click", () => {
+    requestCover = false;
+    toggelTypeMsg();
+});
+
+let mouseDown = 0;
 calendar.onmousedown = () => {
     ++mouseDown;
     if (mouseDown) {
@@ -61,19 +86,22 @@ function getTimeAttr(element) {
 
 const blocks = Array.from(document.querySelectorAll(".block"));
 
+let coverType; //request or offer
 let lastBlockVisited;
 blocks.forEach(block => {
     block.addEventListener("mouseenter", e => {
+        if (requestCover) coverType = "selecting-request";
+        else coverType = "selecting-offer";
         const block = e.target;
         const timeBlock = document.querySelector(`.time-bar > [data-time="${getTimeAttr(block)}"]`)
         timeBlock.classList.add("hovering");
         if (mouseDown) {
-            if (block.classList.contains("selecting")) {
-                lastBlockVisited.classList.remove("selecting");
+            if (block.classList.contains(coverType)) {
+                lastBlockVisited.classList.remove(coverType);
                 lastTimeBlockVisited.classList.remove("hovering");
-            } else block.classList.add("selecting");
+            } else block.classList.add(coverType);
         }
-        block.classList.add("hovering");   
+        block.classList.add("hovering");
     });
 });
 
@@ -82,7 +110,7 @@ blocks.forEach(block => {
     block.addEventListener("mouseout", e => {
         const block = e.target;
         block.classList.remove("hovering");
-        
+
         const timeBlock = document.querySelector(`.time-bar > [data-time="${getTimeAttr(block)}"]`)
 
         if (mouseDown) {
@@ -97,7 +125,7 @@ blocks.forEach(block => {
 blocks.forEach(block => {
     block.addEventListener("mousedown", e => {
         let leftClick = (e.which === 1);
-        if (leftClick) e.target.classList.toggle("selecting");
+        if (leftClick) e.target.classList.toggle(coverType);
     });
 });
 
@@ -105,3 +133,14 @@ calendar.addEventListener("mouseup", e => {
     let timeBlocks = Array.from(timeBar.childNodes);
     timeBlocks.forEach(timeBlock => timeBlock.classList.remove("hovering"));
 });
+
+resetRequest.addEventListener("click", (e) => {
+    blocks.forEach(block => block.classList.remove("selecting-request"));
+})
+
+console.log(resetOffer)
+resetOffer.addEventListener("click", (e) => {
+    console.log(e);
+    blocks.forEach(block => block.classList.remove("selecting-offer"));
+})
+

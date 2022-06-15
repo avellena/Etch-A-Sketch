@@ -1,0 +1,87 @@
+body * {
+    font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 0 200px;
+    gap: 2px;
+}
+
+.title {
+    background-color: hsl(223, 23%, 48%);
+    text-align: center;
+    font-size: 40px;
+    font-weight: 900;
+    color: white;
+    padding: 30px
+}
+
+.header {
+    padding: 4px;
+    display: flex;
+    height: 50px;
+    background-color: hsl(223, 23%, 48%, 0.7);
+}
+
+.header>* {
+    display: flex;
+    width: 200px;
+    padding: 10px 10px;
+    justify-content: space-around;
+    align-items: center;
+    border-right: 2px solid white;
+}
+
+.empty {
+    font-size: 20px;
+    color: white;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.container3 {
+    width: 100px;
+    border: none;
+}
+
+body>.container {
+    display: flex;
+
+}
+
+.selection-message {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgb(224, 224, 224);
+}
+
+.reset {
+    display: block;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.request,
+.offer {
+    font-size: 17px;
+    padding: 4px 12px;
+}
+
+button {
+    background-color: white;
+    color: hsl(223, 23%, 48%);
+    border: none;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background-color: hsl(223, 23%, 48%);
+    color: white;
+}

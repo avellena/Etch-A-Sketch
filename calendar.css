@@ -7,31 +7,32 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width : 600px;
+    width: 600px;
     max-height: 700px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    gap: 5px;
+    font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
+    border-radius: 10px;
+    border: 2px solid rgba(131, 142, 158, 0.85);
+    padding: 10px;
 }
 
-.labeled-calendar > .container {
+.labeled-calendar>.container {
     flex: 1;
     display: flex;
 }
-  
+
 .weekday-bar {
     height: 30px;
-    flex-grow: 0;   
+    flex-grow: 0;
     display: flex;
     padding-left: 90px;
     padding-right: 10px;
     gap: 10px;
     justify-content: stretch;
-    background-color: rgba(131, 142, 158, 0.85);
     align-items: center;
     font-size: 20px;
 }
 
-.weekday-bar > div {
+.weekday-bar>div {
     flex: 1;
     text-align: center;
 }
@@ -43,17 +44,15 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
-    background-color: rgb(238, 241, 245);
 }
 
-.time-bar > div {
+.time-bar>div {
     text-align: center;
     transition: all .12s ease;
     border-radius: 4px;
 }
 
 .calendar {
-    background-color: rgb(238, 241, 245);
     display: flex;
     padding: 10px;
     gap: 10px;
@@ -79,6 +78,12 @@
     background-color: rgba(131, 142, 158, 0.53);
 }
 
-.selecting {
+.selecting-request {
     background-color: hsl(223, 23%, 48%);
 }
+
+.selecting-offer {
+    background-color: rgb(187, 219, 187);
+}
+
+
