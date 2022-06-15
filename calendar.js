@@ -2,7 +2,20 @@ const calendar = document.querySelector(".calendar");
 const weekdays = ['mon', 'tue', 'wed', 'thur', 'fri'];
 const timeBar = document.querySelector(".time-bar");
 const weekdayBar = document.querySelector(".weekday-bar");
+let mouseDown = 0;
 
+calendar.onmousedown = () => {
+    ++mouseDown;
+    if (mouseDown) {
+        console.log('mouse button down')
+    }
+}
+calendar.onmouseup = () => {
+    --mouseDown;
+    if (mouseDown) {
+        console.log('mouse button down')
+    }
+}
 
 for (let i = 0; i < 5; i++) {
     const day = document.createElement("div");
@@ -11,7 +24,7 @@ for (let i = 0; i < 5; i++) {
     for (let i = 0; i < 25; i++) {
         const block = document.createElement("div");
         block.classList.add("block");
-        block.setAttribute("data-time", getTime(i))
+        block.setAttribute("data-time", getTime(i));
         day.appendChild(block);
     }
     calendar.appendChild(day);
@@ -31,6 +44,7 @@ function capitalize(str) {
 for (let i = 0; i < 25; i++) {
     const block = document.createElement("div");
     block.textContent = getTime(i);
+    block.setAttribute("data-time", getTime(i));
     timeBar.appendChild(block);
 }
 
@@ -41,11 +55,48 @@ for (let i = 0; i < 5; i++) {
     weekdayBar.appendChild(weekday);
 }
 
+function getTimeAttr(element) {
+    return element.getAttribute("data-time");
+}
 
 const blocks = Array.from(document.querySelectorAll(".block"));
 
-blocks.forEach(block => block.addEventListener("mouseenter", e => e.target.classList.add("hovering")));
 
-blocks.forEach(block => block.addEventListener("mouseout", e => e.target.classList.remove("hovering")));
+blocks.forEach(block => {
+    block.addEventListener("mouseenter", e => {
+        const block = e.target;
+        const timeBlock = document.querySelector(`.time-bar > [data-time="${getTimeAttr(block)}"]`)
+        timeBlock.classList.add("hovering");
 
-blocks.forEach(block => block.addEventListener("click", e => e.target.classList.add("selecting")));
+        console.log(mouseDown);
+        if (mouseDown) {
+            block.classList.add("selecting");
+            return;
+        }
+        block.classList.add("hovering");   
+    });
+});
+
+
+blocks.forEach(block => {
+    block.addEventListener("mouseout", e => {
+        const block = e.target;
+        block.classList.remove("hovering");
+        if (mouseDown) return;
+        
+        const timeBlock = document.querySelector(`.time-bar > [data-time="${getTimeAttr(block)}"]`)
+        timeBlock.classList.remove("hovering");
+    });
+});
+
+blocks.forEach(block => {
+    block.addEventListener("mousedown", e => {
+        let leftClick = (e.which === 1);
+        if (leftClick) e.target.classList.add("selecting");
+    });
+});
+
+calendar.addEventListener("mouseup", e => {
+    let timeBlocks = Array.from(timeBar.childNodes);
+    timeBlocks.forEach(timeBlock => timeBlock.classList.remove("hovering"));
+});
