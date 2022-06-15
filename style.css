@@ -49,6 +49,7 @@
 .time-bar > div {
     text-align: center;
     transition: all .12s ease;
+    border-radius: 4px;
 }
 
 .calendar {
@@ -70,6 +71,7 @@
     background-color: rgb(190, 209, 232);
     flex: 1 1 20px;
     transition: all .12s ease;
+    border-radius: 4px;
 }
 
 .hovering {

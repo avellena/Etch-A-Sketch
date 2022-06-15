@@ -61,17 +61,17 @@ function getTimeAttr(element) {
 
 const blocks = Array.from(document.querySelectorAll(".block"));
 
-
+let lastBlockVisited;
 blocks.forEach(block => {
     block.addEventListener("mouseenter", e => {
         const block = e.target;
         const timeBlock = document.querySelector(`.time-bar > [data-time="${getTimeAttr(block)}"]`)
         timeBlock.classList.add("hovering");
-
-        console.log(mouseDown);
         if (mouseDown) {
-            block.classList.add("selecting");
-            return;
+            if (block.classList.contains("selecting")) {
+                lastBlockVisited.classList.remove("selecting");
+                lastTimeBlockVisited.classList.remove("hovering");
+            } else block.classList.add("selecting");
         }
         block.classList.add("hovering");   
     });
@@ -82,9 +82,14 @@ blocks.forEach(block => {
     block.addEventListener("mouseout", e => {
         const block = e.target;
         block.classList.remove("hovering");
-        if (mouseDown) return;
         
         const timeBlock = document.querySelector(`.time-bar > [data-time="${getTimeAttr(block)}"]`)
+
+        if (mouseDown) {
+            lastBlockVisited = block;
+            lastTimeBlockVisited = timeBlock;
+            return;
+        }
         timeBlock.classList.remove("hovering");
     });
 });
@@ -92,7 +97,7 @@ blocks.forEach(block => {
 blocks.forEach(block => {
     block.addEventListener("mousedown", e => {
         let leftClick = (e.which === 1);
-        if (leftClick) e.target.classList.add("selecting");
+        if (leftClick) e.target.classList.toggle("selecting");
     });
 });
 
